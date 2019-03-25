@@ -1,12 +1,15 @@
 from fd import fdc
 import datetime
-f=fdc(10,100,7,"hdfc","C:\\Users\\Madusudanan\\Documents\\finance-data\\finance.xlsx")
+f=fdc("C:\\Users\\Madusudanan\\Documents\\finance-data\\finance.xlsx")
+print(f.fetch_fd_value(101))
+print(f.fetch_fd_value(10))
+'''f=fdc(10,100,7,"hdfc","C:\\Users\\Madusudanan\\Documents\\finance-data\\finance.xlsx")
 f.set_fd_date(10,10,2012,"start")
 f.set_fd_date(10,10,2013,"end")
 print(f.get_fd_date("start"))
 print(f.get_fd_date("end"))
 f.save()
-'''import pandas as pd
+import pandas as pd
 import numpy as np
 from openpyxl import load_workbook
 
