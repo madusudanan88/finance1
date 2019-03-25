@@ -1,8 +1,7 @@
 from fd import fdc
 import datetime
 f=fdc("C:\\Users\\Madusudanan\\Documents\\finance-data\\finance.xlsx")
-print(f.fetch_fd_value(101))
-print(f.fetch_fd_value(10))
+print(f.fetch_fd_value_all())
 '''f=fdc(10,100,7,"hdfc","C:\\Users\\Madusudanan\\Documents\\finance-data\\finance.xlsx")
 f.set_fd_date(10,10,2012,"start")
 f.set_fd_date(10,10,2013,"end")

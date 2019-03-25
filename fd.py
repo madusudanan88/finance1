@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 class fdc:
     def __init__(self,file):
         self.fdate=dict()
-        self.file='C:\\Users\\Madusudanan\\Documents\\finance-data\\finance.xlsx'
+        self.file=file
 
     def set_fd_date(self,day,month,year,fg):
         self.fdate[fg]=datetime.date(year,month,day)
@@ -25,9 +25,31 @@ class fdc:
     def save(self):
         wb = load_workbook(self.file)
         ws = wb.worksheets[0]
-        data1 = [self.accno,self.amount,self.roi,self.fdate["start"],self.fdate["end"],self.bank]
+        cdate=datetime.datetime.now()
+        edate=self.fdate["end"]
+        if(edate>cdate):
+            self.active=1
+        else:
+            self.active=0
+        data1 = [self.accno,self.amount,self.roi,self.fdate["start"],self.fdate["end"],self.bank,self.active]
         ws.append(data1)
         wb.save(self.file)
+
+    def fetch_fd_value_all(self):
+        amlist=[]
+        for i in self.fetch_acc_list():
+            amlist.append(self.fetch_fd_value(i))
+        return(amlist)
+
+
+    def fetch_acc_list(self):
+        wb = load_workbook(self.file)
+        ws = wb.worksheets[0]
+        alist=[]
+        for i in ws.rows:
+            if(i[0].value!='Acc no'):
+                alist.append(i[0].value)
+        return(alist)
 
     def fetch_fd_value(self,accno):
         wb = load_workbook(self.file)
