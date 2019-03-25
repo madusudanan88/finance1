@@ -1,0 +1,7 @@
+FD class 40% done
+  Write new FD info into excel sheet done
+  Get the current value of the fd
+  add an active flag to excel
+wrapper FD class
+  provides collated info of all the FD
+  provides a graphical view of the FD value
