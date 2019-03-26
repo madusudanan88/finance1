@@ -1,7 +1,17 @@
-FD class 40% done
+FD class 75% done
   Write new FD info into excel sheet done
-  Get the current value of the fd
-  add an active flag to excel
-wrapper FD class
-  provides collated info of all the FD
-  provides a graphical view of the FD value
+  Get the current value of the fd done
+  add an active flag to excel done
+  provides collated info of all the FD done
+  add a flag for the type of FD and a way to get differentiated info
+  provide a way to get the info on specific date
+  
+GUI
+  provide way to fetch the FD related info and write onto the excel sheet
+  Provide a way to give graphical view of the FD data 
+  
+RD class
+  write a way to write into the excel sheet
+  Get the current Value of rd
+  add an active flag and type flag
+  add a flag for the type of RD and a way to get differentiated info
