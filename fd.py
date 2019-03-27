@@ -1,6 +1,7 @@
 import datetime
 from dateutil.relativedelta import relativedelta
 from openpyxl import load_workbook
+
 class fdc:
     def __init__(self,file):
         self.fdate=dict()
@@ -41,6 +42,28 @@ class fdc:
             amlist.append(self.fetch_fd_value(i))
         return(amlist)
 
+    def fetch_fd_value_all_filter(self,filter,field):
+        amlist=[]
+        for i in self.fetch_acc_list_filter(filter,field):
+            amlist.append(self.fetch_fd_value(i))
+        return(amlist)
+
+    def fetch_acc_list_filter(self,field,fvalue):
+        wb = load_workbook(self.file)
+        ws = wb.worksheets[0]
+        alist=[]
+        j=0
+        for i in ws.rows:
+            for k in i:
+                if(k.value==field):
+                    break
+                j=j+1
+            break
+        for i in ws.rows:
+            if(i[j].value!=field):
+                if(i[j].value==fvalue):
+                    alist.append(i[0].value)
+        return(alist)
 
     def fetch_acc_list(self):
         wb = load_workbook(self.file)
@@ -51,7 +74,7 @@ class fdc:
                 alist.append(i[0].value)
         return(alist)
 
-    def fetch_fd_value(self,accno):
+    def fetch_fd_value(self, accno, cdate=datetime.datetime.now()):
         wb = load_workbook(self.file)
         ws = wb.worksheets[0]
         for i in ws.rows:
@@ -61,7 +84,6 @@ class fdc:
                 sdate=i[3].value
                 edate=i[4].value
                 break
-        cdate=datetime.datetime.now()
         if(cdate>edate):
             rdelta = relativedelta(edate, sdate)
             interest = (int(rdelta.years) * roi * amount) / 100
@@ -69,9 +91,5 @@ class fdc:
         else:
             rdelta = relativedelta(cdate, sdate)
             interest=(int(rdelta.years)*roi*amount)/100
-            interest=interest+((rdelta.years*roi*amount)/1200)
+            interest=interest+((rdelta.months*roi*amount)/1200)
         return(int(interest)+amount)
-
-
-
-        
