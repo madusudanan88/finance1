@@ -1,10 +1,12 @@
 from fd import fdc
 import datetime
-cdate1=datetime.date(2019,1,1)
+cdate1=datetime.date(2020,12,12)
+cdate2=datetime.date(2018,1,1)
 datetime.datetime.combine(cdate1, datetime.datetime.min.time())
 #from PyQt5.QtWidgets import QApplication, QLabel
 f=fdc("C:\\Users\\Madusudanan\\Documents\\finance-data\\finance.xlsx")
-print(f.fetch_fd_value_all_filter("Active",1))
+f.fetch_fd_value_date(101,datetime.datetime.combine(cdate2, datetime.datetime.min.time()),datetime.datetime.combine(cdate1, datetime.datetime.min.time()),1)
+#print(f.fetch_fd_value(101))
 '''f=fdc(10,100,7,"hdfc","C:\\Users\\Madusudanan\\Documents\\finance-data\\finance.xlsx")
 f.set_fd_date(10,10,2012,"start")
 f.set_fd_date(10,10,2013,"end")
